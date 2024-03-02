@@ -7,7 +7,7 @@ const jwt=require('jsonwebtoken')
 const register=async(req,res)=>{
 
     const user=await User.create({...req.body})
-    //once we create user, we have all methods created in schema i.e. 'User'..so 
+    //once we create user, we have all methods created in schema i.e. in 'UserSchema'..so.. 
     const token=user.createJWT()
     
     res.status(StatusCodes.CREATED).json({user:{name:user.getName()},token})
@@ -22,7 +22,9 @@ const login=async(req,res)=>{
   if (!user) {
     throw new UnauthenticatedError('Invalid Credentials');
   }
-  //cpmpare password
+  
+  //compare password
+
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError('Invalid Credentials');
