@@ -22,6 +22,7 @@ const createJob=async(req,res)=>{
     res.status(StatusCodes.CREATED).json({job})
 }
 
+
 const updateJob=async(req,res)=>{
     const {body:{company,position}, user:{userId},params:{id:jobId}}=req;
     if(company===''||position===''){
